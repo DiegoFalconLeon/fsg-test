@@ -11,9 +11,7 @@ class UserTracking extends Model
     use HasFactory;
     protected $table ='user_tracking';
     public $timestamps = false;
-
-
-    public function users(){
-    	return $this->belongsTo(User::class, 'user_id');
-    }
 }
+
+
+

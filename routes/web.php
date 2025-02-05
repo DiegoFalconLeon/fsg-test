@@ -86,6 +86,17 @@ Route::get('/', function () {
 });
 //login
 Route::get('/login', $controller_path . '\login\LoginController@index')->name('login');
+// Route::get('/reset-password', $controller_path . '\login\LoginController@resetPassword')->name('reset-password');
+
+// password reset 
+Route::get('/password/forgot', $controller_path . '\login\LoginController@showForgotPasswordForm')->name('password.request');
+Route::post('/password/email', $controller_path . '\login\LoginController@sendValidationCode')->name('password.email');
+
+Route::get('/password/verify', $controller_path . '\login\LoginController@showVerifyCodeForm')->name('password.verify');
+Route::post('/password/verify', $controller_path . '\login\LoginController@verifyCode')->name('password.check');
+
+Route::get('/password/reset', $controller_path . '\login\LoginController@showResetPasswordForm')->name('password.reset');
+Route::post('/password/reset', $controller_path . '\login\LoginController@resetPassword')->name('password.update');
 //auth validate
 Route::post('/home', $controller_path . '\login\LoginController@authenticate')->name('login.authenticate');
 

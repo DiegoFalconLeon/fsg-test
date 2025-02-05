@@ -26,7 +26,26 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-      
+        @foreach($users as $user)
+        <tr>
+            <td>{{ $user->name }} {{ $user->lastname }}</td>
+            <td>{{ $user->email }}</td>
+            <td>
+                @if ($user->tracking && $user->tracking->status == 'A') Activo
+                @elseif ($user->tracking && $user->tracking->status == 'I') Inactivo
+                @else No definido
+                @endif
+            </td>
+            <td>
+                @if ($user->tracking && $user->tracking->status_conection == '1') Conectado
+                @elseif ($user->tracking && $user->tracking->status_conection == '0') Desconectado
+                @else No definido
+                @endif
+            </td>
+            <td>{{ $user->tracking && $user->tracking->last_conection ? \Carbon\Carbon::parse($user->tracking->last_conection)->format('d/m/Y H:i:s') : 'Nunca' }}</td>
+        </tr>
+        @endforeach
+
 
       </tbody>
     </table>

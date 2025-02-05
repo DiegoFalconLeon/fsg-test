@@ -18,7 +18,7 @@ class CompanySeeder extends Seeder
         DB::table('company')->insert([
             'name' => 'Mi tiendita SACC',
             'document' => '12345678901',
-            'address' => 'Acá cerquita nomás',
+            'address' => 'Mi dirección',
             'phone' => '987654321',
             'email' => 'mitiendita@mail.com',
             'website' => 'www.mitiendita.com',
