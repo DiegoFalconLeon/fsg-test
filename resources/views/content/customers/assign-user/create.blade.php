@@ -1,0 +1,102 @@
+@extends('layouts/contentNavbarLayout')
+
+@section('title', 'Clientes - Nuevo Cliente')
+
+@section('page-script')
+<script src="{{asset('assets/js/pages-account-settings-account.js')}}"></script>
+@endsection
+
+@section('content')
+<h4 class="fw-bold py-3 mb-4">
+  <span class="text-muted fw-light">Cliente /</span> Añadir caso a trabajador
+</h4>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="card mb-4">
+      <h5 class="card-header">Añadir caso a trabajador</h5>
+      <hr class="my-0">
+      <div class="card-body">
+        <form id="formAccountSettings" method="POST" action="{{route('customers.assign-user.new')}}">
+          @csrf
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="customers" class="form-label">Escoger Cliente</label>
+              <select id="customers" name="customers" class="select2 form-select">
+                @foreach($customers as $customer)
+                  <option value="{{$customer->id}}" >{{$customer->name}} {{$customer->lastname}} </option>
+                @endforeach
+              </select>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="areas" class="form-label">Escoger area de consulta</label>
+              <select id="areas" name="areas" class="select2 form-select">
+                @foreach($areas as $area)
+                  <option value="{{$area->id}}" >{{$area->name}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="mb-3 col-md-12">
+              <label for="description" class="form-label">Detalle de consulta</label>
+              <input class="form-control" type="text" name="description" id="description" placeholder="descripcion"/>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="amount" class="form-label">Monto de la propuesta</label>
+              <input class="form-control" type="number" id="amount" name="amount" placeholder="Ingrese el monto"/>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="users" class="form-label">Asignar a Trabajador</label>
+              <select id="users" name="users" class="select2 form-select">
+                  <option value="">Seleccione un trabajador</option>
+              </select>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="observation" class="form-label">Observacion</label>
+              <input class="form-control" type="number" id="observation" name="observation" placeholder="Ingrese su celular"/>
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="status" class="form-label">Estado</label>
+              <select id="status" name="status" class="select2 form-select">
+                <option value="2" >{{Util::cstatus('2')}}</option>
+                <option value="0" >{{Util::cstatus('0')}}</option>
+                <option value="1" >{{Util::cstatus('1')}}</option>
+              </select>
+            </div>
+            <div class="mt-2">
+              <button  class="btn btn-primary me-2">Guardar</button>
+              <a type="reset" class="btn btn-outline-secondary" href="/customers/assign-user">Cancelar</a>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- /Account -->
+    </div>
+  </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+      $('#areas').on('change', function () {
+          var areaId = $(this).val();
+          if (areaId) {
+              $.ajax({
+                  url: '/customers/assign-user/getUsersByArea/' + areaId,
+                  type: 'GET',
+                  success: function (data) {
+                      $('#users').empty();
+                      $('#users').append('<option value="">Seleccione un trabajador</option>');
+                      $.each(data, function (key, value) {
+                          $('#users').append('<option value="' + key + '">' + value + '</option>');
+                      });
+                  }
+              });
+          } else {
+              $('#users').empty();
+              $('#users').append('<option value="">Seleccione un trabajador</option>');
+          }
+      });
+  });
+</script>
+@endsection
