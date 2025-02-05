@@ -52,14 +52,6 @@
               <input class="form-control" type="email" id="email" name="email" placeholder="Ingrese su correo" value="{{$users->email}}"/>
             </div>
             <div class="mb-3 col-md-6">
-              <label for="areas" class="form-label">Área</label>
-              <select id="areas" name="areas" class="select2 form-select">
-                @foreach($areas as $area)
-                  <option value="{{$area->id}}" @selected($area->id==$users->user_area_id)>{{$area->name}} </option>
-                @endforeach
-              </select>
-            </div>
-            <div class="mb-3 col-md-6">
               <label class="form-label" for="password">Contraseña</label>
               <div class="input-group input-group-merge">
                 <input type="password" id="password" name="password" class="form-control" placeholder="********" />
@@ -95,4 +87,35 @@
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('upload').addEventListener('change', function(event) {
+    const file = event.target.files[0]; // Obtiene el archivo seleccionado
+    if (file) {
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+        
+        // Validar el tipo de archivo
+        if (!allowedTypes.includes(file.type)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El archivo debe ser una imagen en formato JPG, JPEG, PNG o GIF.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+
+            event.target.value = ''; // Limpiar el input file
+            return;
+        }
+
+        // Mostrar vista previa de la imagen
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('uploadedAvatar').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
 @endsection

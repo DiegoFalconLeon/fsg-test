@@ -25,35 +25,11 @@
       ]
     },
     {
-      "menuHeader": "Clientes"
-    },
-    {
-      "url": "/customers",
-      "name": "Clientes",
+      "url": "/sessions",
+      "name": "Historial de inicio de sesión",
       "icon": "menu-icon user-icon tf-icons bx bx-user",
-      "slug": "customers",
-      "submenu": [
-        {
-          "url": "/customers",
-          "name": "Lista de Clientes",
-          "slug": "customers.list"
-        },
-        {
-          "url": "/customers/create",
-          "name": "Nuevo Cliente",
-          "slug": "customers.create"
-        },
-        {
-          "url": "/customers/assign-user",
-          "name": "Listar Casos",
-          "slug": "customers.assign-user.list"
-        },
-        {
-          "url": "/customers/assign-user/create",
-          "name": "Añadir caso a trabajador",
-          "slug": "customers.assign-user.create"
-        }
-      ]
+      "slug": "sessions.list"
+     
     },
     {
       "menuHeader": "Configuracion"
@@ -64,19 +40,6 @@
       "slug": "company.index  ",
       "url": "/company"
     },
-    {
-      "name": "Areas",
-      "icon": "menu-icon tf-icons bx bx-collection",
-      "slug": "areas.list",
-      "url": "/areas"
-    },
-    {
-      "name": "Medios de contacto",
-      "icon": "menu-icon tf-icons bx bx-detail",
-      "slug": "meansofcontact.list",
-      "url": "/meansofcontact"
-    },
-
     {
       "url": "https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/laravel-introduction.html",
       "icon": "menu-icon tf-icons bx bx-file",

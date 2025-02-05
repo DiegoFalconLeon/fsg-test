@@ -21,7 +21,7 @@
                     @csrf
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="{{ asset('storage/' . $company->image) }}" alt="company-avatar"
+                            <img src="{{ asset('companies/' . $company->image) }}" alt="company-avatar"
                                 class="d-block rounded" height="100" id="uploadedAvatar" />
                             <div class="button-wrapper">
                                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">

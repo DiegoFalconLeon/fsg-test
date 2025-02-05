@@ -108,6 +108,10 @@ Route::get('users/export/pdf', $controller_path . '\users\UsersController@export
 Route::get('users/export/excel', $controller_path . '\users\UsersController@exportExcel')->name('users.excel');
 
 
+//sessions
+Route::get('/sessions', $controller_path . '\sessions\SessionsController@index')->name('sessions.list');
+
+
 //clientes
 Route::get('/customers', $controller_path . '\customers\CustomerController@index')->name('customers.list');
 Route::get('/customers/create', $controller_path . '\customers\CustomerController@create')->name('customers.create');

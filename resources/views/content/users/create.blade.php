@@ -50,14 +50,6 @@
               <input class="form-control" type="email" id="email" name="email" placeholder="Ingrese su correo"/>
             </div>
             <div class="mb-3 col-md-6">
-              <label for="areas" class="form-label">Área</label>
-              <select id="areas" name="areas" class="select2 form-select">
-                @foreach($areas as $area)
-                  <option value="{{$area->id}}" >{{$area->name}} </option>
-                @endforeach
-              </select>
-            </div>
-            <div class="mb-3 col-md-6">
               <label class="form-label" for="password">Contraseña</label>
               <div class="input-group input-group-merge">
                 <input type="password" id="password" name="password" class="form-control" placeholder="********" />

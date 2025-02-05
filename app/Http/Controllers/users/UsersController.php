@@ -5,7 +5,6 @@ namespace App\Http\Controllers\users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Area;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Company;
 use App\Exports\UserExport;
@@ -16,21 +15,17 @@ class UsersController extends Controller
 {
     public function index(){
       $users = User::all();
-      // confirmDelete('Borrar Usuario', '¿Está seguro que desea borrar al usuario?');
       return view('content.users.index',compact('users'));
-    }
-
-    public function create(){
-      $users = User::all();
-      $areas = Area::where('status','A')->get();
-      return view('content.users.create', compact('users','areas'));
     }
 
     public function showUser($id){
     	$users = User::find($id);
-      $areas = Area::where('status','A')->get();
-    	return view('content.users.show', compact('users', 'areas'));
+    	return view('content.users.show', compact('users'));
     }
+    public function create(){
+      return view('content.users.create');
+    }
+    
     public function delete($id){
     	$users = User::find($id);
     	$users->delete();
@@ -41,7 +36,6 @@ class UsersController extends Controller
     public function update(Request $request){
     	$id = $request->id;
       $users = User::find($id);
-      $users->area_id = $request->areas;
     	$users->name = $request->name;
       $users->lastname = $request->lastname;
     	$users->email = $request->email;
@@ -67,7 +61,6 @@ class UsersController extends Controller
     }
     public function newUser(Request $request){
       $users = new User();
-      $users->area_id = $request->areas;
       $users->name = $request->name;
       $users->lastname = $request->lastname;
       $users->email = $request->email;

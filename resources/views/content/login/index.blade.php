@@ -1,6 +1,6 @@
 @extends('layouts/blankLayout')
 
-@section('title', 'Login Cridez')
+@section('title', 'Login')
 
 @section('page-style')
 <!-- Page -->

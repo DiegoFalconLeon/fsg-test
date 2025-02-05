@@ -1,6 +1,6 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'Usuarios Cridez')
+@section('title', 'Usuarios')
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
@@ -18,9 +18,9 @@
     <table class="table">
       <thead class="table-light">
         <tr>
+          <th>foto</th>
           <th>Nombre Completo</th>
           <th>Email</th>
-          <th>Area</th>
           <th>Estado</th>
           <th>Ocpiones</th>
         </tr>
@@ -28,11 +28,12 @@
       <tbody class="table-border-bottom-0">
         @foreach ($users as $user)
         <tr>
+          <td align="center" valign="middle" style=" text-align: center;" >
+            <img width="110px" src="{{ asset('user/'.$user->image) }}" style="object-fit: cover" alt="">
+          </td>
           <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$user->name ." ". $user->lastname}}</strong></td>
           <td>{{$user->email}}</td>
-          <td>
-            {{$user->areas->name}}
-          </td>
+        
           <td><span class="badge bg-label-{{Util::bagde($user->status)}} me-1">{{Util::estado($user->status)}}</span></td>
           <td>
             <a  href="users/show/{{$user->id}}"><i class="bx bx-edit-alt me-1"></i> editar</a>
